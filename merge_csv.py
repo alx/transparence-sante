@@ -8,4 +8,9 @@ for path in glob.glob('./raw/*.csv'):
         for line in csv:
             out.write(line.strip()+","+path.split("/")[-1].split(".")[0]+"\n")
             i += 1
+for path in glob.glob('./raw/INCOMPLETE/*.csv'):
+    with open(path) as csv:
+        for line in csv:
+            out.write(line.strip()+","+path.split("/")[-1].split(".")[0]+"\n")
+            i += 1
 print(i)
