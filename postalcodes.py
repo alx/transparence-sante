@@ -23,5 +23,5 @@ if __name__ == '__main__':
     while True:
         a  = len(postal_codes())
         b = len(used_postal_codes())
-        print a-b,',',a,',',b,',',float(a)*1.0/b,',',time.time()
+        print a-b,',',a,',',b,',',int(float(b)*1.0/a*10000)/100.,',',time.time()
         time.sleep(60)
