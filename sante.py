@@ -2,6 +2,7 @@
 import mechanize, cookielib, re, parse, sys, postalcodes, random, os
 from utils import *
 
+EXTRACT_CONVENTIONS = True
 while True:
     POSTALCODE = random.choice(list(postalcodes.postal_codes_left()))
 
@@ -14,7 +15,6 @@ while True:
     br.set_handle_robots(False)
     br.set_handle_refresh(mechanize._http.HTTPRefreshProcessor(), max_time=1)
     br.addheaders = [('User-agent', 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.9.0.1) Gecko/2008071615 Fedora/3.0.1-1.fc9 Firefox/3.0.1')]
-
 
     warn(POSTALCODE)
     info("HOMEPAGE")
@@ -41,19 +41,24 @@ while True:
     br.form['j_idt187:captcha'] = answer.encode('utf-8')
     r = br.submit()
 
+    if EXTRACT_CONVENTIONS:     
+        warn(POSTALCODE)
+        info("SWITCH TO CONVENTIONS")
+        br.select_form(nr=0)
+        r = br.submit(name='j_idt17:j_idt23')
+
     warn(POSTALCODE)
     info("RESULTS")
     page = 0
-    all_data = []
+    tmp_out = "raw/tmp/%s.csv" % POSTALCODE
+    out = open(tmp_out,'w')
     while True:
-        warn(POSTALCODE)
-        info("page %s" % page)
+        info(POSTALCODE +" page %s" % page)
         html = r.read()
         data = list(parse.results(html))
-        info(str(len(data)))
-        #table(data)
-        all_data += data
-        save_csv(all_data,"raw/tmp/%s.csv" % POSTALCODE)
+        table(data)
+        for line in data:
+            out.write(','.join([l.encode('utf-8') for l in line])+"\n")
         br.select_form(nr=0)
         try:
             if br.form.find_control('j_idt17:j_idt93').disabled:
@@ -63,5 +68,5 @@ while True:
             break
         page += 1
 
-    os.remove("raw/tmp/%s.csv" % POSTALCODE)
-    save_csv(all_data,"raw/%s.csv" % POSTALCODE)
+    out.close()
+    os.rename(tmp_out, "raw/%s.csv" % POSTALCODE)
