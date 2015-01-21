@@ -2,7 +2,7 @@
 import mechanize, cookielib, re, parse, sys, postalcodes, random, os
 from utils import *
 
-EXTRACT_CONVENTIONS = True
+EXTRACT_CONVENTIONS = False
 while True:
     POSTALCODE = random.choice(list(postalcodes.postal_codes_left()))
 
