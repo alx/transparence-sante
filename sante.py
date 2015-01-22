@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import mechanize, cookielib, re, parse, sys, postalcodes, random, os
+import settings
 from utils import *
 
-EXTRACT_CONVENTIONS = False
+EXTRACT_CONVENTIONS = settings.EXTRACT_CONVENTIONS
 while True:
     POSTALCODE = random.choice(list(postalcodes.postal_codes_left()))
 
@@ -50,13 +51,12 @@ while True:
     warn(POSTALCODE)
     info("RESULTS")
     page = 0
-    tmp_out = "raw/tmp/%s.csv" % POSTALCODE
+    tmp_out = settings.EXTRACT_DIR+"/tmp/%s.csv" % POSTALCODE
     out = open(tmp_out,'w')
     while True:
         info(POSTALCODE +" page %s" % page)
         html = r.read()
         data = list(parse.results(html))
-        table(data)
         for line in data:
             out.write(','.join([l.encode('utf-8') for l in line])+"\n")
         br.select_form(nr=0)
@@ -69,4 +69,5 @@ while True:
         page += 1
 
     out.close()
-    os.rename(tmp_out, "raw/%s.csv" % POSTALCODE)
+    os.rename(tmp_out, settings.EXTRACT_DIR+"/%s.csv" % POSTALCODE)
+    print POSTALCODE, "is finished"

@@ -1,12 +1,12 @@
-import os,time
+import csv,os,time
+import settings
 
 def postal_codes():
-    csv = open('data/communes.txt')
-    codes = set()
-    for line in csv:
-        _,code,_ = line.split('\t')
-        codes.add(code.strip())
-    return codes
+    a = csv.reader(open('data/villes_france.csv'))
+    arr = []
+    for l in a:
+        arr += l[8].split('-')
+    return set(arr)
 
 def used_postal_codes():
     used = set()
