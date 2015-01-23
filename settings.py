@@ -1,2 +1,2 @@
-EXTRACT_CONVENTIONS = False
-EXTRACT_DIR = 'raw'
+EXTRACT_CONVENTIONS = True
+EXTRACT_DIR = 'raw' if EXTRACT_CONVENTIONS else 'raw_conventions'

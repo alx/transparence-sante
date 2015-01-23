@@ -13,7 +13,7 @@ for path in glob.glob('./raw/*.csv'):
             postal_code = path.split('/')[-1].split('.')[0]
 
             if len(data) < 5:
-                print "corrupt data",data
+                print "corrupt data",data,postal_code
                 continue
 
             date_index = 4
@@ -25,7 +25,6 @@ for path in glob.glob('./raw/*.csv'):
 
             if not montant_index:
                 montant_index = len(data)-3
-                print "no euro", line
             data = data[:date_index]+[','.join(data[date_index+1:montant_index-1])]+[data[montant_index]]
  
 
