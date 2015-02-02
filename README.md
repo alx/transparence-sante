@@ -1,6 +1,6 @@
 # French Health Actors Transparency Dataset
 
-**Explore the datasets interactively: [avantages.csv](https://www.google.com/fusiontables/data?docid=1QiklnoCM8EwUuvto6NU7RPazqQLLkAg_bkxjFLAJ) and [conventions.csv](https://www.google.com/fusiontables/data?docid=1Sob9ToXKtZwlDcEvXLKevA2y3hLeKn330jrNZKIY)**
+**Explore the datasets interactively: [avantages.csv](https://www.google.com/fusiontables/data?docid=11BJThx1meiBhbToJB80QJOc2phX-Hot9gX6qFhj1) and [conventions.csv](https://www.google.com/fusiontables/data?docid=1Sob9ToXKtZwlDcEvXLKevA2y3hLeKn330jrNZKIY)**
 
 This is a first try at extracting the data from [transparence.sante.gouv.fr](http://transparence.sante.gouv.fr)
 
@@ -18,4 +18,5 @@ The resulting files are in data/:
 Scraping is segmented via postal code and I'm missing some postal codes, feel free to do it in another way.
 
 
+**TODO Better cleaning of the dataset, code cleaning and better doc**
 
