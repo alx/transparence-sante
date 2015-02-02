@@ -16,20 +16,25 @@ for path in glob.glob('./raw/*.csv'):
                 print "corrupt data",data,postal_code
                 continue
 
-            date_index = 4
+            nature_index = 4
             montant_index = None
             for i, el in enumerate(data):
-                if i > date_index and '\xe2\x82\xac' in el:
+                if i > nature_index and '\xe2\x82\xac' in el:
                     montant_index = i
                     break
 
             if not montant_index:
                 montant_index = len(data)-3
-            data = data[:date_index]+[','.join(data[date_index+1:montant_index-1])]+[data[montant_index]]
+            data = data[:nature_index]+[','.join(data[nature_index:montant_index])]+[data[montant_index]]
  
+
+            if not data[nature_index]:
+                print 'na nature',data,line
+                continue
 
             if len(data) != 6:
                 print 'invadlid data',data
+                import pdb;pdb.set_trace()
             try:
                 data[5] = re.sub("[^0-9]", "", data[5])
                 int(data[5])
