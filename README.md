@@ -13,7 +13,7 @@ The resulting files are in data/:
 - launch `python sante.py` for a single-threaded scraping
 - launch `python machinegun.py <number of threads>` to have multiple scraping processes in parrallel
 
-Scraping is segmented via postal code and I'm msising some postal codes, feel free to do it in another way.
+Scraping is segmented via postal code and I'm missing some postal codes, feel free to do it in another way.
 
 
 
