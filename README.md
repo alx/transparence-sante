@@ -1,4 +1,6 @@
-# French Transparency Dataset in the Health sector
+# French Health Actors Transparency Dataset
+
+**Explore the datasets interactively: [avantages.csv](https://www.google.com/fusiontables/data?docid=1QiklnoCM8EwUuvto6NU7RPazqQLLkAg_bkxjFLAJ) and [conventions.csv](https://www.google.com/fusiontables/data?docid=1Sob9ToXKtZwlDcEvXLKevA2y3hLeKn330jrNZKIY)**
 
 This is a first try at extracting the data from [transparence.sante.gouv.fr](http://transparence.sante.gouv.fr)
 
