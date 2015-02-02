@@ -16,6 +16,9 @@ for path in glob.glob('./raw/*.csv'):
                 print "corrupt data",data,postal_code
                 continue
 
+            if data[1].startswith(" "):
+                data = [data[0] + data[1]]+data[2:]
+
             nature_index = 4
             montant_index = None
             for i, el in enumerate(data):
@@ -25,12 +28,15 @@ for path in glob.glob('./raw/*.csv'):
 
             if not montant_index:
                 montant_index = len(data)-3
-            data = data[:nature_index]+[','.join(data[nature_index:montant_index])]+[data[montant_index]]
+            data = data[:nature_index]+[','.join(data[nature_index:montant_index])]+[''.join(data[montant_index:])]
  
 
             if not data[nature_index]:
                 print 'na nature',data,line
                 continue
+            
+            if data[2] == "Médecin":
+                print "oops, Médecin is my name",data,line
 
             if len(data) != 6:
                 print 'invadlid data',data
