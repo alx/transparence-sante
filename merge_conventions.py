@@ -16,9 +16,9 @@ for path in glob.glob('./raw_conventions/*.csv'):
                 print "corrupt data",data,postal_code
                 continue
 
-            date_index = 3
+            date_index = 5
             size = 6
-            data = data[:date_index]+[','.join(data[date_index+1:])]
+            data = data[:date_index]+[','.join(x.strip() for x in data[date_index:] if x.strip())]
             out.writerow(data+[postal_code])
             count += 1
 print(count)

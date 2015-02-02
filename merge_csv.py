@@ -3,7 +3,7 @@ import glob
 import re,csv
 
 count = 0
-out = csv.writer(open('data/merged.csv','wb'))
+out = csv.writer(open('data/avantages.csv','wb'))
 out.writerow("entreprise,type_beneficiaire,beneficiaire,date,nature,montant,code_postal_beneficaire".split(','))
 for path in glob.glob('./raw/*.csv'):
     with open(path) as csv:

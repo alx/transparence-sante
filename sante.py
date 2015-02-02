@@ -5,7 +5,10 @@ from utils import *
 
 EXTRACT_CONVENTIONS = settings.EXTRACT_CONVENTIONS
 while True:
-    POSTALCODE = random.choice(list(postalcodes.postal_codes_left()))
+    if len(sys.argv) > 1:
+        POSTALCODE = sys.argv[1]
+    else:
+        POSTALCODE = random.choice(list(postalcodes.postal_codes_left()))
 
     br = mechanize.Browser()
     cj = cookielib.LWPCookieJar()
@@ -71,3 +74,6 @@ while True:
     out.close()
     os.rename(tmp_out, settings.EXTRACT_DIR+"/%s.csv" % POSTALCODE)
     print POSTALCODE, "is finished"
+    
+    if len(sys.argv) > 1:
+        break

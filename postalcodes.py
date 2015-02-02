@@ -2,7 +2,7 @@ import csv,os,time
 import settings
 
 def postal_codes():
-    a = csv.reader(open('data/villes_france.csv'))
+    a = csv.reader(open('external_sources/villes_france.csv'))
     arr = []
     for l in a:
         arr += l[8].split('-')
